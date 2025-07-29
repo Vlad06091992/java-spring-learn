@@ -11,6 +11,8 @@
 <!--<bean id="person" class="spring.Person"><constructor-arg ref="pet"/></bean>-->
 <bean id="person" class="spring.Person">
     <property name="pet" ref="myPet"/>
+    <property name="surname" value="Иванов"/>
+    <property name="age" value="33"/>
 </bean>
 
 </beans>
