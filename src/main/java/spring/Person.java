@@ -1,12 +1,17 @@
 package spring;
 
 public class Person {
-    private Pet pet;
+    public Person() {
+        System.out.println("constructor called");
+    }
 
-    public Person(Pet pet) {
-        System.out.println("person bean is created");
+    public void setPet(Pet pet) {
+        System.out.println("pet setted");
         this.pet = pet;
     }
+
+    private Pet pet;
+
 
     public void callMyPet(){
         System.out.println("hello, my pet");

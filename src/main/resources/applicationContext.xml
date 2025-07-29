@@ -6,8 +6,11 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-<bean id="pet" class="spring.Cat"></bean>
+<bean id="myPet" class="spring.Cat"></bean>
 <bean id="cat" class="spring.Cat"></bean>
-<bean id="person" class="spring.Person"><constructor-arg ref="pet"/></bean>
+<!--<bean id="person" class="spring.Person"><constructor-arg ref="pet"/></bean>-->
+<bean id="person" class="spring.Person">
+    <property name="pet" ref="myPet"/>
+</bean>
 
 </beans>
