@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-<bean id="dog" class="spring.Dog"></bean>
+<bean id="pet" class="spring.Cat"></bean>
 <bean id="cat" class="spring.Cat"></bean>
 
 </beans>
