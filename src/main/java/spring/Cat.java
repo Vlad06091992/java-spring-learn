@@ -1,5 +1,8 @@
 package spring;
 
+import org.springframework.stereotype.Component;
+
+@Component("catBean")
 public class Cat implements Pet {
 
     public String getName() {
@@ -13,6 +16,7 @@ public class Cat implements Pet {
     private String name;
 
     public Cat() {
+        System.out.println("cat bean created");
     }
 
     public void say(){

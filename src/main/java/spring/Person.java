@@ -1,13 +1,21 @@
 package spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("personBean")
 public class Person {
 
     private Pet pet;
     private String surname;
     private int age;
 
-    public Person() {
-        System.out.println("constructor called");
+
+    //@Autowired - внедрить зависимость в конструктор, сеттер, поле
+    @Autowired
+    public Person(Pet pet) {
+        this.pet = pet;
+        System.out.println("person bean created");
     }
 
 
