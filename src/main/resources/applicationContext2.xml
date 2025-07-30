@@ -10,7 +10,7 @@
     <context:property-placeholder location="classpath:myApp.properties"/>
 
     <!--  дефолтный scope - singleton, можно не указывать, создается один бин после чтения конфиг файла  -->
-    <bean id="myPet" scope="singleton" class="spring.Dog"></bean>
+    <bean id="myPet" init-method="init" destroy-method="destroy" scope="singleton" class="spring.Dog"></bean>
 
     <!--  бин создается при вызове метода getBean()   -->
     <bean id="myPet2" scope="prototype" class="spring.Cat"></bean>
