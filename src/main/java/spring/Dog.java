@@ -1,5 +1,7 @@
 package spring;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 
 @Component("dogBean")
@@ -25,11 +27,12 @@ public class Dog implements Pet {
     //модификаторы доступа могут быть любыми, можем возвращать что угодно, но это не будет использоваться
     // в данных методах не должно быть параметров
     // в зависимости от scope методы вызываются либо один раз, либо нет
+   @PostConstruct()
     private void init(){
-        System.out.println("init");
+        System.out.println("Class dog: init method");
     }
-
+    @PreDestroy()
     public void destroy(){
-        System.out.println("destroy");
+        System.out.println("Class dog: destroy method");
     }
 }
