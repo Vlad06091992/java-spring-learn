@@ -12,9 +12,8 @@ public class Person {
 
 
     //@Autowired - внедрить зависимость в конструктор, сеттер, поле
-    @Autowired
-    public Person(Pet pet) {
-        this.pet = pet;
+//    @Autowired
+    public Person() {
         System.out.println("person bean created");
     }
 
@@ -28,7 +27,7 @@ public class Person {
         this.age = age;
     }
 
-
+    @Autowired
     public void setPet(Pet pet) {
         System.out.println("pet setted");
         this.pet = pet;
