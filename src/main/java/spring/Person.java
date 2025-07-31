@@ -15,8 +15,8 @@ public class Person {
     private Pet pet;
     @Value("Ivanov")
     private String surname;
-//    @Value("${person.age}")
-    @Value("34")
+    @Value("${person.age}")
+//    @Value("34")
     private int age;
 
 
