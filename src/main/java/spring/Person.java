@@ -1,21 +1,26 @@
 package spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("personBean")
 public class Person {
 
-    @Autowired
+//    @Autowired
+//    пример @Qualifier в методе
+//    @Qualifier("dogBean")
+//    @Qualifier("catBean")
     private Pet pet;
     private String surname;
     private int age;
 
 
-    //@Autowired - внедрить зависимость в конструктор, сеттер, поле
-//    @Autowired
-    public Person() {
+    //    пример @Qualifier в конструкторе
+    @Autowired
+    public Person(@Qualifier("catBean") Pet pet) {
         System.out.println("person bean created");
+        this.pet = pet;
     }
 
 
@@ -28,11 +33,13 @@ public class Person {
         this.age = age;
     }
 
-
-//    public void setPet(Pet pet) {
-//        System.out.println("pet setted");
-//        this.pet = pet;
-//    }
+//    пример @Qualifier в сеттере
+//    @Autowired
+//    @Qualifier("catBean")
+    public void setPet(Pet pet) {
+        System.out.println("pet setted");
+        this.pet = pet;
+    }
 
 
     public String getSurname() {
