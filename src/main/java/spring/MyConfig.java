@@ -7,3 +7,4 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("spring")
 public class MyConfig {
 }
+
