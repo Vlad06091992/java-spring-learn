@@ -29,15 +29,14 @@ public class LoggingAspect {
 //    @Before("execution(public void aop.UniversityLibrary.getBook())")
 
     //сработает для всех методов, которые начинаются в get
-    @Before("execution(public void aop.UniversityLibrary.get*())")
+    @Before("execution(public void aop.UniversityLibrary.getBook(aop.Book))")
     public void beforeGetBookAdvice() {
         System.out.println("beforeGetBookAdvice: попытка получить книгу");
     }
 
-
-//    @Before("execution(public * returnBook())") // * - любой returnType подходит
-    @Before("execution(* returnBook())") //любой модификатор доступа + * - любой returnType подходит
-//    @Before("execution(public String returnBook())")
+//    @Before("execution(* returnBook(String))") // передача типа аргумента
+//    @Before("execution(public void *(*))") // перехватит вызов любого метода который вернет void и который принимает 1 любой параметр
+    @Before("execution(public void *(..))") // перехватит вызов любого метода который вернет void и который принимает 1 любое кол-во параметров
     public void beforeReturnBookAdvice() {
         System.out.println("beforeGetBookAdvice: попытка вернуть книгу");
     }
