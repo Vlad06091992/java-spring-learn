@@ -1,4 +1,4 @@
-package spring;
+package spring_ioc_di_examples;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
