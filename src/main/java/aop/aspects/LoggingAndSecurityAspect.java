@@ -25,20 +25,52 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LoggingAndSecurityAspect {
 
-    //Объявление pointcut
-    @Pointcut("execution(* get*(..))") //правила для вызова
-    private void allGetMethods(){}
 
+    //описывает, для какого действия(метода) должно выполниться
+    @Pointcut("execution(* aop.UniversityLibrary.*(..))") //для такого pointcut.....
+    private void allGetMethodsFromUniLibrary(){} //такой обработчик.....
 
-    //использование
-    @Before("allGetMethods()")
-    public void beforeGetLoggingAdvice() {
-        System.out.println("beforeGetBookAdvice: попытка получить книгу или журнал");
+    //описывает когда, и что должно выполнится
+    @Before("allUniversityMethodsWithExcludingReturnMagazine()") //перед выполнением такого обработчика....
+    public void beforeGetAndReturnLoggingAdvice(){ //выполни это!
+        System.out.println("beforeLoggingAdvice: writing log 10");
     }
 
-    //использование
-    @Before("allGetMethods()")
-    public void beforeGetSecurityAdvice() {
-        System.out.println("beforeGetBookAdvice: проверка прав на получение книги или журнала");
-    }
+    @Pointcut("execution(* aop.UniversityLibrary.returnMagazine())")
+    private void returnMagazineFromLibrary(){}
+
+    //Комбинирование pointcut'ов
+    @Pointcut("allGetMethodsFromUniLibrary() && !returnMagazineFromLibrary()")
+    private void allUniversityMethodsWithExcludingReturnMagazine(){}
+
+
+
+
+
+
+//    @Pointcut("execution(* aop.UniversityLibrary.get*())")
+//        private void allGetMethodsFromUniLibrary(){}
+//
+//    @Pointcut("execution(* aop.UniversityLibrary.return*())")
+//    private void allReturnMethodsFromUniLibrary(){}
+//
+//    //Комбинирование pointcut'ов
+//    @Pointcut("allGetMethodsFromUniLibrary() || allReturnMethodsFromUniLibrary()")
+//    private void allGetAndReturnMethodsFromUniLibrary(){}
+//
+//    @Before("allGetMethodsFromUniLibrary()")
+//    public void beforeGetLoggingAdvice(){
+//        System.out.println("beforeLoggingAdvice: writing log 1");
+//    }
+//
+//    @Before("allReturnMethodsFromUniLibrary()")
+//    public void beforeReturnLoggingAdvice(){
+//        System.out.println("beforeLoggingAdvice: writing log 2");
+//    }
+//
+//    @Before("allGetAndReturnMethodsFromUniLibrary()")
+//    public void beforeGetAndReturnLoggingAdvice(){
+//        System.out.println("beforeLoggingAdvice: writing log 3");
+//    }
+
 }
