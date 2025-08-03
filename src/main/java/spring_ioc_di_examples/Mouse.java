@@ -1,4 +1,4 @@
-package spring;
+package spring_ioc_di_examples;
 
 public class Mouse implements Pet {
     @Override
