@@ -25,4 +25,10 @@ public class University {
         students.add(st3);
 
     }
+
+    public String returnBook() {
+        int a = 10/0;
+        System.out.println("Возвращаем книгу в библиотеку");
+        return "Война и мир";
+    }
 }

@@ -19,18 +19,25 @@ public class NewLoggingAspect {
 //        ProceedingJoinPoint – позволяет управлять вызовами методов в AOP
 
         System.out.println("AroundReturnBookLoggingAdvice: в библиотеку будут возвращать книгу");
-        // этой строчкой вызываем целевой метод
-        long start = System.currentTimeMillis();
-        Object targetMethodResult = proceedingJoinPoint.proceed();
-        long end = System.currentTimeMillis();
+
+        Object targetMethodResult = null;
+
+        try {
+            // этой строчкой вызываем целевой метод
+            targetMethodResult = proceedingJoinPoint.proceed();
+        } catch (Exception e){
+            System.out.println("было выброшено исключение");
+//             targetMethodResult = "Неизвестное название книги";
+//             throw new Exception("Неизвестное название книги");
+             throw e;
+        }
 
 
-        System.out.println("Метод returnBook выполнил свою работы за "+ (end - start) + " миллисекунд");
 
         System.out.println("AroundReturnBookLoggingAdvice: в библиотеку вернули книгу");
 
-        return "Преступление и наказание"; //<- можем подменить ответ
-//        return targetMethodResult;
+//        return "Преступление и наказание"; //<- можем подменить ответ
+        return targetMethodResult;
 
 
 
