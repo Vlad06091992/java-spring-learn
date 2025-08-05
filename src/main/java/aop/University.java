@@ -9,7 +9,7 @@ import java.util.List;
 public class University {
     public List<Student> getStudents() {
         System.out.println("Информация от метода getStudents");
-        System.out.println(students);
+        System.out.println(students.get(9));
         return students;
     }
 

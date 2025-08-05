@@ -3,6 +3,7 @@ package aop.aspects;
 import aop.Student;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -12,8 +13,6 @@ import java.util.List;
 @Component
 @Aspect
 public class UniversityLoggingAspect {
-
-
     //Before выполняется до метода с основной логикой
     @Before("execution(* aop.University.getStudents())")
     public void BeforeGetStudentsLoggingAdvice() {
@@ -24,7 +23,7 @@ public class UniversityLoggingAspect {
     //Можем перехватывать и менять значения
     @AfterReturning(pointcut = "execution(* aop.University.getStudents())", returning = "students")
     public void AfterReturningGetStudentsLoggingAdvice(JoinPoint joinPoint, List<Student> students) {
-     //также можем работать с JoinPoint + MethodSignature в этом advice
+        //также можем работать с JoinPoint + MethodSignature в этом advice
         System.out.println("args" + joinPoint.getArgs());
 
 
@@ -36,4 +35,12 @@ public class UniversityLoggingAspect {
 
         System.out.println("AfterReturningGetStudentsLoggingAdvice: логируем получение списка студентов после работы метода getStudents");
     }
+
+    //AfterThrowing выполняется только после окончания метода если в нем было выброшено исключение
+    //нельзя обработать исключение, можно получить лишь доступ к исключению
+    @AfterThrowing(pointcut = "execution(* aop.University.getStudents())",throwing = "exception")
+    public void AfterThrowingGetStudentsLoggingAdvice(Throwable exception) {
+        System.out.println("AfterThrowingGetStudentsLoggingAdvice: логируем выброс исключения в getStudents " + exception);
+    }
 }
+
