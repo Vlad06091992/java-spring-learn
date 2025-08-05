@@ -2,10 +2,7 @@ package aop.aspects;
 
 import aop.Student;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -34,6 +31,14 @@ public class UniversityLoggingAspect {
         firstStudent.setAvgScore(10);
 
         System.out.println("AfterReturningGetStudentsLoggingAdvice: логируем получение списка студентов после работы метода getStudents");
+    }
+
+    //AfterThrowing выполняется только после окончания метода если в нем было выброшено исключение
+    //нельзя обработать исключение, можно получить лишь доступ к исключению
+    @After("execution(* aop.University.getStudents())")
+    public void AfterGetStudentsLoggingAdvice(JoinPoint joinPoint) {
+        joinPoint.getSignature();
+        System.out.println("AfterGetStudentsLoggingAdvice: логируем нормальную работу метода или выброс исключения");
     }
 
     //AfterThrowing выполняется только после окончания метода если в нем было выброшено исключение

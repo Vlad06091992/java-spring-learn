@@ -14,7 +14,7 @@ public class Test2 {
             List<Student> students = university.getStudents();
             System.out.println(students);
         } catch (Exception e){
-            System.out.println("Было поймано исключение" + e);
+            System.out.println("Было поймано исключение за пределами метода" + e);
         }
 
         context.close();
