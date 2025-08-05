@@ -24,9 +24,10 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Order(20)
 public class SecurityAspect {
-    @Before("aop.aspects.MyPointcuts.beforeAllGetMethods()")
-    public void beforeGetLoggingAdvice(){
-        System.out.println("beforeAllGetMethods2: проверка прав при попытке получения книги/журнала");
+    @Before("aop.aspects.MyPointcuts.beforeAllAddMethods()")
+    public void beforeAddLoggingAdvice(){
+        System.out.println("beforeAllAddMethods2: проверка прав при попытке получения книги/журнала");
+        System.out.println("---------------------------------------------------");
     }
 
 }

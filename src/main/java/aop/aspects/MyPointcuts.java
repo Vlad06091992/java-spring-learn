@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class MyPointcuts {
-    @Pointcut("execution(* aop.UniversityLibrary.get*())")
+    @Pointcut("execution(* aop.UniversityLibrary.add*(..))")
     //обязательно PUBLIC!!!
-    public void beforeAllGetMethods(){}
+    public void beforeAllAddMethods(){}
 }
