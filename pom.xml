@@ -37,5 +37,16 @@
       <artifactId>aspectjweaver</artifactId>
       <version>1.9.24</version>
     </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.7.7</version>
+
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>6.6.23.Final</version>
+    </dependency>
   </dependencies>
 </project>
