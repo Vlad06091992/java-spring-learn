@@ -7,7 +7,7 @@
     <session-factory>
 
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/java-spring-learn</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/java-spring</property>
         <property name="hibernate.connection.username">java_user</property>
         <property name="hibernate.connection.password">java_password</property>
 
@@ -21,7 +21,7 @@
         <property name="current_session_context_class">thread</property>
 
 
-<!--        <property name="hbm2ddl.auto">update</property>-->
+        <property name="hbm2ddl.auto">update</property>
 
 
 <!--        <mapping class="org.demo.main.model.Employee"/>-->
