@@ -1,7 +1,7 @@
 package hibernate_test;
 
+import hibernate_test.entity.Detail;
 import hibernate_test.entity.Employee;
-import hibernate_test.entity.Preset;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -13,6 +13,7 @@ public class Read {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
+                .addAnnotatedClass(Detail.class)
                 .buildSessionFactory();
 
         try {
@@ -38,11 +39,15 @@ public class Read {
             Session session = factory.getCurrentSession();
             session.beginTransaction();
 
+            Detail det = new Detail("fjslf","fksdlfksd","fkl;sdkf;sd");
+            session.save(det);
             List<Employee> employees = Preset.getEmployees();
 
             for(Employee employee:employees){
                 session.save(employee);
             }
+
+
 
             int id =  employees.get(3).getId();
             session = factory.getCurrentSession();

@@ -18,6 +18,10 @@ public class Employee {
     @Column(name = "salary")
     private int salary;
 
+    @OneToOne //создай связь(в данном случае одно направленная так как в details нет такой аннотации и он ничего не знает про Employee
+    @JoinColumn(name = "details_id") //Создай такую колонку для того чтобы хранить внешний ключ который ссылается на primary key  Detail
+    private Detail detail;
+
     public Employee() {
     }
 
