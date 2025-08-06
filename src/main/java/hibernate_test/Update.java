@@ -1,12 +1,9 @@
 package hibernate_test;
 
 import hibernate_test.entity.Employee;
-import hibernate_test.entity.Preset;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import java.util.List;
 
 public class Update {
     public static void main(String[] args) {
