@@ -43,9 +43,22 @@ public class OneToOne {
         try {
             session = factory.getCurrentSession();
             session.beginTransaction();
-            Employee Ivan = session.get(Employee.class, 152);
-            System.out.println("Ivan details " + Ivan.getDetail());
+//            создание
+//            Employee olga = new Employee("Olga", "Ivanova", "Analyst", 4500);
+//            Detail detail = new Detail("email","43423","city");
+//            olga.setDetail(detail);
+//            session.save(olga);
+
+            //            чтение
+//            Employee olga = session.get(Employee.class,302);
+//            System.out.println(olga.getDetail());
+
+//            удаление(каскадное)
+            Employee olga = session.get(Employee.class, 302);
+            session.delete(olga);
+
             session.getTransaction().commit();
+
         } catch (Exception e) {
             System.out.println("exception : " + e);
         } finally {
