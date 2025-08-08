@@ -1,6 +1,6 @@
-package hibernate_test;
+package hibernate_one_to_one;
 
-import hibernate_test.entity.Employee;
+import hibernate_one_to_one.entity.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
