@@ -1,11 +1,11 @@
-package hibernate_one_to_many_uni.entity.entity;
+package hibernate_one_to_many_bi.entity.entity;
 
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class OneToMany {
+public class Run {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -17,22 +17,24 @@ public class OneToMany {
 
         try {
             session = factory.getCurrentSession();
-
+            session.beginTransaction();
 
             //создание департамента с работниками
-            Department department = new Department("IT", 300, 1500);
+//            Department department = new Department("IT", 300, 1500);
+//
+//            Employee ivan = new Employee("Ivan", "Ivanov", 500);
+//            Employee igor = new Employee("Igor", "Petrov", 1500);
+//
+//
+//            department.addEmployeeToDepartment(ivan);
+//            department.addEmployeeToDepartment(igor);
+//
+//            session.save(department);
 
-            Employee ivan = new Employee("Ivan", "Ivanov", 500);
-            Employee igor = new Employee("Igor", "Petrov", 1500);
+//            получение департамента и его работников через департамент
+            Employee igor = session.get(Employee.class,403);
 
-
-            department.addEmployeeToDepartment(ivan);
-            department.addEmployeeToDepartment(igor);
-            session.beginTransaction();
-            session.save(department);
-
-            System.out.println(department.getEmployees());
-
+            session.delete(igor);
             session.getTransaction().commit();
 
 
