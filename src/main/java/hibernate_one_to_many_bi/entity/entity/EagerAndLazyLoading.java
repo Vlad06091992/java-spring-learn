@@ -1,11 +1,17 @@
 package hibernate_one_to_many_bi.entity.entity;
 
+//Дефолтные типы загрузки
+//@OneToOne -> Eager
+//@ManyToOne -> Eager
+//@OneToMany -> Lazy
+//@ManyToOne -> Lazy
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Run {
+public class EagerAndLazyLoading {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -16,15 +22,11 @@ public class Run {
         Session session = null;
 
         try {
-            session = factory.getCurrentSession();
+             session = factory.getCurrentSession();
             session.beginTransaction();
-
-//            получение департамента и его работников через департамент
-            Employee igor = session.get(Employee.class,403);
-
-            session.delete(igor);
-            session.getTransaction().commit();
-
+            Department dep = session.get(Department.class, 252);
+            System.out.println("get emplyees");
+            System.out.println(dep.getEmployees());
 
         } catch (Exception e) {
             System.out.println("exception : " + e);

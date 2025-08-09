@@ -20,8 +20,9 @@ public class Department {
     @Column(name = "min_salary")
     private int minSalary;
 
-    //так как связь в  Employee настроена, для установления связи пишем mappedBy = "departments"(такое поле есть в Employee)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
+    // FetchType.EAGER -> при загрузке сущности все связанные сущности подтянуться сразу
+    // одним запросом к БД
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department",fetch = FetchType.LAZY)
     private List<Employee> employees;
 
     public Department() {
