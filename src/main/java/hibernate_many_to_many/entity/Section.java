@@ -21,7 +21,8 @@ public class Section {
     private String id;
     @Column
     private String name;
-    @ManyToMany(cascade = CascadeType.ALL) //Логика та же как и в Child, но меняем местами joinColumns и inverseJoinColumns
+    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    //Логика та же как и в Child, но меняем местами joinColumns и inverseJoinColumns
     @JoinTable(name = "children_sections", joinColumns = @JoinColumn(name = "section_id"), inverseJoinColumns = @JoinColumn(name = "child_id"))
     private List<Child> children;
 

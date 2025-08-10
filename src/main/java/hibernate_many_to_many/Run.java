@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class Run {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
@@ -25,33 +27,37 @@ public class Run {
             session.createNativeQuery("TRUNCATE TABLE children_sections CASCADE").executeUpdate();
             session.createNativeQuery("TRUNCATE TABLE sections CASCADE").executeUpdate();
 
-            Child vlad = new Child("Vlad",7);
-            Child igor = new Child("Igor",9);
-            Child vanya = new Child("Vanya",8);
+            Child vlad = new Child("Vlad", 7);
+            Child igor = new Child("Igor", 9);
+            Child vanya = new Child("Vanya", 8);
+            Child egor = new Child("Egor", 9);
+            Child sanya = new Child("Sanya", 10);
 
             Section football = new Section("football");
             Section volleyball = new Section("volleyball");
-            session.save(volleyball);
+            Section karate = new Section("karate");
             football.addChildToSection(vanya);
             football.addChildToSection(vlad);
+            football.addChildToSection(igor);
+            karate.addChildToSection(egor);
+            karate.addChildToSection(sanya);
+            karate.addChildToSection(vlad);
 
-            igor.addSectionToChild(volleyball);
             vlad.addSectionToChild(volleyball);
 
-            session.save(igor);
-            session.save(vlad);
-            session.save(football);
-//            session.save(volleyball);
-
-           Section footballFromDB =  session.get(Section.class,football.getId());
-
-            System.out.println("в секции футбола: " + footballFromDB.getChildren());
-
-            Child vladFromDB = session.get(Child.class,vlad.getId());
-            System.out.println("в ходит на : " + vladFromDB.getSections());
+            session.persist(vlad);
+            session.persist(football);
+            session.persist(karate);
+            factory.getCurrentSession();
             session.getTransaction().commit();
 
-
+            Session newSession = factory.getCurrentSession();
+            newSession.beginTransaction();
+            Child Vlad = (Child) newSession.createQuery("FROM Child where name ='Vlad'").getResultList().get(0);
+            String name = Vlad.getName();
+            System.out.println(name);
+            newSession.delete(Vlad);
+            newSession.getTransaction().commit();
         } catch (Exception e) {
             System.out.println("exception : " + e);
         } finally {

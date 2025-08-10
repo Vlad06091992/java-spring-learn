@@ -15,7 +15,7 @@ public class Child {
     private String name;
     @Column(name = "age")
     private int age;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(name = "children_sections", joinColumns = @JoinColumn(name = "child_id"), inverseJoinColumns = @JoinColumn(name = "section_id"))
     //название таблицы-посредника - children_sections
     //в таблице children_sections будет колонка внешних ключей child_id для связи с таблицей children
